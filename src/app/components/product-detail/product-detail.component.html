@@ -1,0 +1,47 @@
+    
+    <div class="col-sm-12 pt-5">
+        <div class="col-md-12">
+            <form id="productForm" #productForm="ngForm" (ngSubmit)="onProductSubmitForm(productForm);" novalidat>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">{{mode}} Product</legend>    
+                    <div class="form-group row">
+                        <label for="name" class="col-md-2 col-form-label">Name</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" #name="ngModel" name="name" [(ngModel)]="productDetail.name" placeholder="name" required>
+                            <div [hidden]="name.valid || (name.pristine && !productForm.submitted)" class="text-danger">
+                              First name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="description" class="col-md-2 col-form-label">Description</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" #description="ngModel" name="description" [(ngModel)]="productDetail.description" placeholder="description" required>
+                            <div [hidden]="description.valid || (description.pristine && !productForm.submitted)" class="text-danger">
+                              Description is required.
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="form-group row">
+                        <label for="phone" class="col-md-2 col-form-label">Image</label>
+                        <div class="col-md-5">
+                                <img style='display:block; width:100px;height:100px;' id='base64image'                 
+                                [src]="productDetail.image"/>
+                            <input type="file" accept="image/*" (change)="changeListener($event)" class="form-control"  placeholder="image" required>
+                            <input style="display:none" #image="ngModel" name="image" [(ngModel)]="productDetail.image">
+                            <div [hidden]="image.valid || (image.pristine && !productForm.submitted)" class="text-danger">
+                              Image is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-7 text-right">
+                            <button type="submit" class="btn btn-primary mr-2">Save</button>
+                            <button type="button" (click)="onClickCancel()" class="btn btn-primary">Cancel</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
